@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+# taken from https://github.com/Ubuntu-Solutions-Engineering/openstack-deb
+
+%:
+	dh $@ --with=systemd
+
+override_dh_install:
+	# don't install *.po files
+	# don't install a useless copy of the manpages
+	dh_install --exclude=*.po --exclude=*.pot --exclude='.1' --exclude=manpages
+
+override_dh_installdocs:
+	# don't install a useless copy of the manpages
+	dh_installdocs --exclude='.1' --exclude=manpages
+
+override_dh_installinit:
+	dh_systemd_enable -pgpio-dbus --name=gpio-dbus gpio-dbus.service
+	dh_installinit -pgpio-dbus --no-start --noscripts
+	dh_systemd_start -pgpio-dbus --no-restart-on-upgrade --no-start
+
+override_dh_systemd_start:
+	echo "Not running dh_systemd_start"

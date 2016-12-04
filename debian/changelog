@@ -1,0 +1,5 @@
+gpio-dbus (0.0.1) UNRELEASED; urgency=medium
+
+  * Initial release.
+
+ -- Yann Büchau <yann.buechau@web.de>  Sun, 04 Dec 2016 14:13:05 +0100

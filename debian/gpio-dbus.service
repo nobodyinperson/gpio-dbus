@@ -1,0 +1,8 @@
+[Unit]
+Description=DBus access to raspberry pi's GPIO pins
+
+[Service]
+Type=dbus
+BusName=de.nobodyinperson.gpio
+RemainAfterExit=no
+ExecStart=/usr/bin/gpio-dbus-service
